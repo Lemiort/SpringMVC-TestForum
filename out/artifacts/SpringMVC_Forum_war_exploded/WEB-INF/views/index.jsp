@@ -34,7 +34,14 @@
     <!-- тело -->
     <tbody>
     <tr>
-        <td>FAQ</td>
+        <td>
+            <td>
+                FAQ
+            </td>
+            <td>
+                Админ
+            </td>
+        </td>
         <td>1</td>
         <td>03.03.2003 Lemiort</td>
     </tr>
