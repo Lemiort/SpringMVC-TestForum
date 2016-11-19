@@ -33,17 +33,32 @@
     </thead>
     <!-- тело -->
     <tbody>
-    <tr>
-        <td>FAQ</td>
-        <td>1</td>
-        <td>03.03.2003 Lemiort</td>
-    </tr>
-    <tr>
-        <td>Флудилка</td>
-        <td>100500</td>
-        <td>06.06.2006</td>
-    </tr>
-    </tbody>
+    <c:forEach items="${forumJSP.threads}" var="thread">
+        <tr>
+            <td>
+                <div class="h4" align="left">
+                    <c:out value="${thread.title}"/>
+                    <div class="small">
+                        <c:out value="${thread.creator.name}"/>
+                        <c:out value="${thread.timeCreated}"/>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="h4" align="left">
+                    1
+                <div/>
+            </td>
+            <td>
+                <div class="h4" align="left">
+                    <c:out value="${thread.timeUpdated}"/>
+                    <div class="small">
+                        <c:out value="${thread.lastUser.name}"/>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </c:forEach>
 
 </table>
 
