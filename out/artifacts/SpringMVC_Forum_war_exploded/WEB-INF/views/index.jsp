@@ -37,7 +37,7 @@
         <tr>
             <td>
                 <div class="h4" align="left">
-                    <c:out value="${thread.title}"/>
+                    <a href="/thread?id=<c:out value="${thread.id}"/>"><c:out value="${thread.title}"/></a>
                     <div class="small">
                         <c:out value="${thread.creator.name}"/>
                         <c:out value="${thread.timeCreated}"/>

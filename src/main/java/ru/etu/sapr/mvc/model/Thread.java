@@ -2,6 +2,7 @@ package ru.etu.sapr.mvc.model;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -14,6 +15,31 @@ public class Thread {
     private Date timeUpdated;
     private User creator;
     private User lastUser;
+    private int id;
+    private ArrayList<Message> messages;
+
+    static int globalThreadCounter = 0;
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Thread(){
+        id = globalThreadCounter++;
+        messages = new ArrayList<Message>();
+        Message tempMessage = new Message();
+        tempMessage.setText("jwesglker");
+        messages.add(tempMessage);
+
+        tempMessage = new Message();
+        tempMessage.setText("gjugygjfyjjyh");
+
+        messages.add(tempMessage);
+    }
 
     public String getTitle(){
         return title;
@@ -54,5 +80,13 @@ public class Thread {
     public void setLastUser(User user)
     {
         lastUser = user;
+    }
+
+    public ArrayList<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(ArrayList<Message> messages) {
+        this.messages = messages;
     }
 }
