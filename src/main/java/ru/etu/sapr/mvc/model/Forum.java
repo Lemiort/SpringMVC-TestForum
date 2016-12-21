@@ -15,11 +15,9 @@ public class Forum {
         threads = new ArrayList<Thread>();
         User lemiort = new User();
         lemiort.setName("Lemiort");
-        lemiort.setPassword("1234");
 
         User freewind = new User();
         freewind.setName("Freewind");
-        freewind.setPassword("1234");
 
         Thread faq = new Thread();
         faq.setTitle("FAQ");
