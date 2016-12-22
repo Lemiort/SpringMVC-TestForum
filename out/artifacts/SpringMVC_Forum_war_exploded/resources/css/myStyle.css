@@ -1,10 +1,6 @@
 /* CSS used here will be applied after bootstrap.css */
-.fa-heart{
-    color:#e74c3c;
-}
-[class^="fa fa-star"]{
-    color:#f1c40f;
-}
+
+
 .fa-quote-right{
     font-size:.5em;
 }
@@ -20,6 +16,15 @@ section.panel-title{
     margin:0 auto;
     text-align:center;
 }
+
+.topic-body{
+    width:100%;
+    margin-left: auto;
+    border-top-width: 1px;
+    border-top-style: ridge;
+    border-top-color: #d0e8f5;
+}
+
 figure img{
     display :inline !important;
 }

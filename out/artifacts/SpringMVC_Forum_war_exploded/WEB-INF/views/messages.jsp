@@ -11,7 +11,7 @@
     <spring:url value="/resources/css/bootstrap-theme.css" var="startertemplate"/>
     <link href="${bootstrap}" rel="stylesheet" />
     <link href="${startertemplate}" rel="stylesheet" />
-    <link href="resources/css/myStyle.css" rel="stylesheet" />
+    <link href="../../resources/css/myStyle.css" rel="stylesheet" />
 </head>
 
 <body>

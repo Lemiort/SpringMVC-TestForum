@@ -6,11 +6,12 @@
 <html>
 
 <head>
-  <title>Index Page</title>
-  <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
-  <spring:url value="/resources/css/bootstrap-theme.css" var="startertemplate"/>
-  <link href="${bootstrap}" rel="stylesheet" />
-  <link href="${startertemplate}" rel="stylesheet" />
+    <title>Index Page</title>
+    <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
+    <spring:url value="resources/css/bootstrap-theme.css" var="startertemplate"/>
+    <link href="${bootstrap}" rel="stylesheet" />
+    <link href="${startertemplate}" rel="stylesheet" />
+    <link href="../../resources/css/myStyle.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -18,7 +19,7 @@
 
 <!-- таблица тем  -->
 <!-- TODO: сделать блочную вёрстку ну или другим способом сделать это дерьмо более презентабельным -->
-<table class="table table-hover" align="center">
+<%--<table class="table table-hover" align="center">
 <!--<table class="table-bordered" align="center">-->
     <!-- шапка -->
     <thead class="thead-inverse">
@@ -47,7 +48,7 @@
             <td>
                 <div class="h4" align="left">
                     1
-                <div/>
+                </div>
             </td>
             <td>
                 <div class="h4" align="left">
@@ -60,8 +61,51 @@
         </tr>
     </c:forEach>
 
-</table>
+</table>--%>
 
+<div class="container">
+        <section class="panel panel-info">
+            <header class="panel-heading">
+                <section class="panel-title">
+                    <section class="col-md-4">
+                        Название темы
+                    </section>
+                    <section class="col-md-4">
+                        Количество сообщений
+                    </section>
+                    <section class="col-md-4">
+                        Последнее сообщение
+                    </section>
+                </section>
+            </header>
+            <section class="clearfix">
+                <div class="panel-body row topic-body col-md-12">
+                    <section class="col-md-4">
+                        dfdfdfs
+                    </section>
+                    <section class="col-md-4">
+                        dfdfdfs
+                    </section>
+                    <section class="col-md-4">
+                        dfdfdfs
+                    </section>
+                </div>
+
+                <div class="panel-body row topic-body col-md-12">
+                    <section class="col-md-4">
+                        dfdfdfs
+                    </section>
+                    <section class="col-md-4">
+                        dfdfdfs
+                    </section>
+                    <section class="col-md-4">
+                        dfdfdfs
+                    </section>
+                </div>
+
+            </section>
+        </section>
+</div>
 
 </body>
 
