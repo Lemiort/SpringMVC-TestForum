@@ -40,6 +40,7 @@ public class Message {
         this.authorId = author;
     }
 
+
     public User getAuthorId() {
         return authorId;
     }

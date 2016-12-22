@@ -7,7 +7,7 @@
         <property name="connection.url"> jdbc:mysql://localhost:3306/test</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">root</property>
+        <property name="connection.password">ni44shch</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
@@ -16,7 +16,7 @@
      <!--   <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">update</property>-->
 
-       <!-- <property name="hibernate.current_session_context_class">thread</property>-->
+        <property name="hibernate.current_session_context_class">thread</property>
 
         <mapping class="ru.etu.sapr.mvc.model.Message"/>
         <mapping class="ru.etu.sapr.mvc.model.User"/>

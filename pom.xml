@@ -22,6 +22,7 @@
         <glassfish.version>4.1.1</glassfish.version>
         <!--<hibernate.version>5.2.5.Final</hibernate.version>-->
         <hibernate.version>4.3.11.FINAL</hibernate.version>
+        <!--<hibernate.version>4.2.21.Final</hibernate.version>-->
         <mysql-connector.version>6.0.5</mysql-connector.version>
 
         <!-- Spring -->
@@ -97,6 +98,14 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
 
 
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->

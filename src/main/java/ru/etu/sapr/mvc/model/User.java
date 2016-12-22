@@ -1,11 +1,7 @@
 package ru.etu.sapr.mvc.model;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import javax.persistence.*;
 
 @Component
 @Entity

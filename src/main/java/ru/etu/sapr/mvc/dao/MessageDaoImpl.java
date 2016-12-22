@@ -2,6 +2,8 @@ package ru.etu.sapr.mvc.dao;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.TransactionException;
+import org.hibernate.service.ServiceRegistry;
 
 import java.util.List;
 import ru.etu.sapr.mvc.util.HibernateUtil;
@@ -19,6 +21,7 @@ public class MessageDaoImpl implements MessageDao {
         Query q = session.createQuery(FROM_MESSAGE);
         List<Message> list = (List<Message>) q.list();
         session.getTransaction().commit();
+        //session.close();
         return list;
     }
 
@@ -34,9 +37,9 @@ public class MessageDaoImpl implements MessageDao {
     }
 
     public void create(Message message) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        session.save(message);
-        session.getTransaction().commit();
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
+            session.save(message);
+            session.getTransaction().commit();
     }
 }

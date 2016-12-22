@@ -1,6 +1,7 @@
 package ru.etu.sapr.mvc.controller;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.service.ServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -13,15 +14,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ru.etu.sapr.mvc.dao.MessageDao;
 import ru.etu.sapr.mvc.dao.MessageDaoImpl;
+import ru.etu.sapr.mvc.dao.UserDao;
+import ru.etu.sapr.mvc.dao.UserDaoImpl;
 import ru.etu.sapr.mvc.model.Forum;
 import ru.etu.sapr.mvc.model.Message;
 import ru.etu.sapr.mvc.model.User;
+
+import javax.jws.soap.SOAPBinding;
 
 @Controller
 public class MainController {
 
     MessageDao messageDao = new MessageDaoImpl();
+    UserDao userDao = new UserDaoImpl();
     //private Forum forum = new Forum();
+
+    public MainController(){
+        if(userDao.getAll().size() == 0){
+            User temp = new User();
+            temp.setName("Ololosh");
+            userDao.create(temp);
+        }
+    }
 
     /*First method on start application*/
     /*Попадаем сюда на старте приложения (см. параметры аннотации и настройки пути после деплоя) */
@@ -65,13 +79,28 @@ public class MainController {
     @RequestMapping(value = "/messages", method = RequestMethod.GET)
     public ModelAndView viewMessages() {
         ModelAndView modelAndView = new ModelAndView();
-        /*if(messageDao.getAll().size() == 0) {
-            Message temp = new Message();
-            temp.setText("rgewgegwg");
-            messageDao.create(temp);
-        }*/
+
         modelAndView.addObject("messagesJSP",messageDao.getAll());
         modelAndView.setViewName("messages");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/messages", method = RequestMethod.POST)
+    public ModelAndView postMessages(@RequestParam("text") String text) {
+        Message temp = new Message();
+        temp.setText(text);
+        temp.setAuthorId(userDao.getAll().get(0));
+        messageDao.create(temp);
+
+        return viewMessages();
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public ModelAndView viewUser() {
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("usersJSP",userDao.getAll());
+        modelAndView.setViewName("users");
         return modelAndView;
     }
 }

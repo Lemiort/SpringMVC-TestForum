@@ -59,7 +59,7 @@
 
                                         <figure>
                                             <img class="img-rounded img-responsive" src="../../resources/images/av.jpg" alt="User avatar">
-                                            <figcaption class="text-center"> Name </figcaption>
+                                            <figcaption class="text-center"> <c:out value="${message.authorId.name}"/> </figcaption>
                                         </figure>
 
                                     </section>
@@ -89,9 +89,37 @@
             </c:forEach>
         </section>
     </section>
+
+
+    <form class="form-horizontal" action="messages" method="post">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Добавить сообщение</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-12 control-label" for="text">Текст сообщения</label>
+                <div class="col-md-12">
+                    <input id="text" name="text" type="text" placeholder="сообщение"
+                           class="form-control input-md" required="">
+
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-12 control-label" for="submitButton"></label>
+                <div class="col-md-12">
+                    <button type="submit" id="submitButton" name="submitButton" class="btn btn-success">
+                        Отправить
+                    </button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
 </section>
-
-
 
 </body>
 
