@@ -59,7 +59,7 @@
 
                                         <figure>
                                             <img class="img-rounded img-responsive" src="../../resources/images/av.jpg" alt="User avatar">
-                                            <figcaption class="text-center"> <c:out value="${message.authorId.name}"/> </figcaption>
+                                            <figcaption class="text-center"> <c:out value="${message.author.name}"/> </figcaption>
                                         </figure>
 
                                     </section>

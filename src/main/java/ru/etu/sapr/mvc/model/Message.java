@@ -32,16 +32,15 @@ public class Message {
         this.text = text;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "authorId", nullable = true)
-    private User authorId;
+    @ManyToOne
+    @JoinColumn(name = "authorId")
+    private User author;
 
-    public void setAuthorId(User author) {
-        this.authorId = author;
+    public User getAuthor() {
+        return author;
     }
 
-
-    public User getAuthorId() {
-        return authorId;
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }

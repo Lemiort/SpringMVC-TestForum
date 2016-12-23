@@ -30,11 +30,11 @@ public class MainController {
     //private Forum forum = new Forum();
 
     public MainController(){
-        if(userDao.getAll().size() == 0){
+     /*   if(userDao.getAll().size() == 0){
             User temp = new User();
             temp.setName("Ololosh");
             userDao.create(temp);
-        }
+        }*/
     }
 
     /*First method on start application*/
@@ -79,7 +79,7 @@ public class MainController {
     @RequestMapping(value = "/messages", method = RequestMethod.GET)
     public ModelAndView viewMessages() {
         ModelAndView modelAndView = new ModelAndView();
-
+        messageDao.getAll().get(0);
         modelAndView.addObject("messagesJSP",messageDao.getAll());
         modelAndView.setViewName("messages");
         return modelAndView;
@@ -89,7 +89,7 @@ public class MainController {
     public ModelAndView postMessages(@RequestParam("text") String text) {
         Message temp = new Message();
         temp.setText(text);
-        temp.setAuthorId(userDao.getAll().get(0));
+        temp.setAuthor(userDao.getAll().get(0));
         messageDao.create(temp);
 
         return viewMessages();
@@ -102,5 +102,14 @@ public class MainController {
         modelAndView.addObject("usersJSP",userDao.getAll());
         modelAndView.setViewName("users");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public ModelAndView createUser(@RequestParam("nick") String nick) {
+        User temp = new User();
+        temp.setName(nick);
+        userDao.create(temp);
+
+        return viewUser();
     }
 }

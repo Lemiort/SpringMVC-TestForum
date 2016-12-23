@@ -2,6 +2,7 @@ package ru.etu.sapr.mvc.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Component
 @Entity
@@ -28,5 +29,4 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-
 }
