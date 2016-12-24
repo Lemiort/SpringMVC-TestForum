@@ -72,7 +72,9 @@ public class MainController {
     public ModelAndView viewThread(@ModelAttribute("userJSP") User user,
                                    @RequestParam("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("threadJSP", threadDao.getById(id));
+        Thread thread = threadDao.getById(id);
+        thread.getMessages().sort(Message.COMPARE_BY_DATE);
+        modelAndView.addObject("threadJSP", thread);
         modelAndView.setViewName("thread");
         return modelAndView;
     }
@@ -86,13 +88,16 @@ public class MainController {
 
         Thread thread = threadDao.getById(id);
         thread.getMessages().add(temp);
+        thread.getMessages().sort(Message.COMPARE_BY_DATE);
 
         //((ArrayList<Message>)thread.getMessages()).sort(Message.COMPARE_BY_DATE);
         threadDao.update(thread);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("threadId",id);
-        modelAndView.addObject("threadJSP", threadDao.getById(id));
+        thread = threadDao.getById(id);
+        thread.getMessages().sort(Message.COMPARE_BY_DATE);
+        modelAndView.addObject("threadJSP", thread);
         modelAndView.setViewName("thread");
 
         return modelAndView;

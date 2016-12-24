@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Red on 14.11.2016.
@@ -41,13 +42,13 @@ public class Thread {
     }
 
     @OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
-    private Collection<Message> messages;
+    private List<Message> messages;
 
-    public Collection<Message> getMessages() {
+    public List<Message> getMessages() {
         return messages;
     }
 
-    public void setMessages(Collection<Message> messages) {
+    public void setMessages(List<Message> messages) {
         this.messages = messages;
     }
 }
