@@ -50,9 +50,6 @@
                                 </section>
                             </div>
                             <section class="row panel-body">
-                                <section class="col-md-9">
-                                    <c:out value="${message.text}"/>
-                                </section>
 
                                 <section idThread="user-description" class="col-md-3 ">
                                     <section class="well">
@@ -65,19 +62,17 @@
                                     </section>
                                 </section>
 
+                                <section class="col-md-9">
+                                    <c:out value="${message.text}"/>
+                                </section>
+
                             </section>
                             <div class="panel-footer">
                                 <div class="row">
-                                    <section class="col-md-3 ">
-
-                                    </section>
-                                    <section idThread="thanks" class="col-md-6">
-
-                                    </section>
                                     <section class="col-md-3">
-                                        <a href="#"> Reply With Quote </a> |
-                                        <a href="#"> Reply </a>|
-                                        <a href="#"> Edit Post </a>
+                                        <a href="#"> Редактировать </a> |
+                                        <a href="#"> Удалить </a>|
+                                        <a href="#"> Что-то ещё </a>
                                     </section>
                                 </div>
                             </div>
@@ -92,6 +87,34 @@
 
 
     <form class="form-horizontal" action="messages" method="post">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Добавить сообщение</legend>
+
+            <!-- Textarea -->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="text">Текст сообшения</label>
+                <div class="col-md-9">
+                    <textarea class="form-control input-md" id="text" name="text" type="text"
+                              placeholder="сообщение" required="" ></textarea>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="submitButton"></label>
+                <div class="col-md-9">
+                    <button type="submit" id="submitButton" name="submitButton" class="btn btn-default">
+                        Отправить
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+
+    <%--<form class="form-horizontal" action="messages" method="post">
         <fieldset>
 
             <!-- Form Name -->
@@ -118,7 +141,7 @@
             </div>
 
         </fieldset>
-    </form>
+    </form>--%>
 </section>
 
 </body>

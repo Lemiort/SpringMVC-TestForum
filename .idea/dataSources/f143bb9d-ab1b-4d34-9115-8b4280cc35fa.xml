@@ -46,7 +46,7 @@
     </key>
     <key id="20" parent="8" name="message_idMessage_uindex">
       <columns>idMessage</columns>
-      <underlying-index>message_idMessage_uindex</underlying-index>
+      <underlying-index>Message_idMessage_uindex</underlying-index>
     </key>
     <foreign-key id="21" parent="8" name="message_thread_idThread_fk">
       <columns>idThread</columns>
@@ -73,7 +73,7 @@
     </key>
     <key id="26" parent="9" name="user_idUser_uindex">
       <columns>idUser</columns>
-      <underlying-index>user_idUser_uindex</underlying-index>
+      <underlying-index>User_idUser_uindex</underlying-index>
     </key>
     <column id="27" parent="10" name="idThread">
       <mandatory>1</mandatory>
