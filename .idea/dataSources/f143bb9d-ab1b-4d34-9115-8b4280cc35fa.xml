@@ -9,53 +9,57 @@
     <schema id="4" name="mysql"/>
     <schema id="5" name="performance_schema"/>
     <schema id="6" name="sys"/>
-    <schema id="7" name="mydatabase"/>
-    <table id="8" parent="1" name="message"/>
-    <table id="9" parent="1" name="user"/>
-    <column id="10" parent="8" name="idMessage">
+    <schema id="7" name="mkyong"/>
+    <schema id="8" name="websystique"/>
+    <table id="9" parent="1" name="message"/>
+    <table id="10" parent="1" name="user"/>
+    <column id="11" parent="9" name="idMessage">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="11" parent="8" name="text">
+    <column id="12" parent="9" name="text">
+      <mandatory>1</mandatory>
       <data-type>text|0</data-type>
     </column>
-    <column id="12" parent="8" name="authorId">
+    <column id="13" parent="9" name="authorId">
+      <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
     </column>
-    <index id="13" parent="8" name="message_idMessage_uindex">
+    <index id="14" parent="9" name="Message_idMessage_uindex">
       <columns>idMessage</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="14" parent="8" name="PRIMARY">
+    <key id="15" parent="9" name="PRIMARY">
       <columns>idMessage</columns>
       <primary>1</primary>
     </key>
-    <key id="15" parent="8" name="message_idMessage_uindex">
+    <key id="16" parent="9" name="Message_idMessage_uindex">
       <columns>idMessage</columns>
-      <underlying-index>message_idMessage_uindex</underlying-index>
+      <underlying-index>Message_idMessage_uindex</underlying-index>
     </key>
-    <column id="16" parent="9" name="idUser">
+    <column id="17" parent="10" name="idUser">
       <mandatory>1</mandatory>
       <data-type>int(11)|0</data-type>
       <sequence-identity>1</sequence-identity>
     </column>
-    <column id="17" parent="9" name="name">
-      <data-type>varchar(256)|0</data-type>
+    <column id="18" parent="10" name="name">
+      <mandatory>1</mandatory>
+      <data-type>text|0</data-type>
     </column>
-    <index id="18" parent="9" name="user_idUser_uindex">
+    <index id="19" parent="10" name="User_idUser_uindex">
       <columns>idUser</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="19" parent="9" name="PRIMARY">
+    <key id="20" parent="10" name="PRIMARY">
       <columns>idUser</columns>
       <primary>1</primary>
     </key>
-    <key id="20" parent="9" name="user_idUser_uindex">
+    <key id="21" parent="10" name="User_idUser_uindex">
       <columns>idUser</columns>
-      <underlying-index>user_idUser_uindex</underlying-index>
+      <underlying-index>User_idUser_uindex</underlying-index>
     </key>
   </database-model>
 </dataSource>
