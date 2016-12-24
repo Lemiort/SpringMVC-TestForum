@@ -19,7 +19,7 @@ import ru.etu.sapr.mvc.model.Thread;
 import ru.etu.sapr.mvc.model.User;
 
 import javax.jws.soap.SOAPBinding;
-import java.util.ArrayList;
+import java.util.*;
 
 @Controller
 public class MainController {
@@ -46,24 +46,7 @@ public class MainController {
         //modelAndView.addObject("forumJSP",forum);
         modelAndView.setViewName("index");
 
-        if(threadDao.getAll().size() == 1){
-            Thread  temp = new Thread();
-            //temp.setTitle("Thread 1");
-            //temp.setMessages( new ArrayList<Message>());
-            User user = new User();
-            user.setName("Azazello");
-            Message message = new Message();
-            message.setIdUser(user);
-            message.setText("1fwqngtkg");
-            temp.setMessages(new ArrayList<Message>());
-            temp.getMessages().add(message);
-
-            Message message2 = new Message();
-            message2.setIdUser(user);
-            message2.setText("2fwqngtkg");
-            temp.getMessages().add(message2);
-            threadDao.create(temp);
-        }
+        modelAndView.addObject("threadsJSP",threadDao.getAll());
 
         return modelAndView;
     }
@@ -89,10 +72,29 @@ public class MainController {
     public ModelAndView viewThread(@ModelAttribute("userJSP") User user,
                                    @RequestParam("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
-        //modelAndView.addObject("userJSP", new User());
-        //modelAndView.addObject("threadJSP",forum.getThreads().get(0));
         modelAndView.addObject("threadJSP", threadDao.getById(id));
         modelAndView.setViewName("thread");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/thread", method = RequestMethod.POST)
+    public ModelAndView postMessageToThread(@RequestParam("id") int id, @RequestParam("text") String text) {
+        Message temp = new Message();
+        temp.setDate_posted(new GregorianCalendar());
+        temp.setText(text);
+        temp.setIdUser(userDao.getAll().get(1));
+
+        Thread thread = threadDao.getById(id);
+        thread.getMessages().add(temp);
+
+        //((ArrayList<Message>)thread.getMessages()).sort(Message.COMPARE_BY_DATE);
+        threadDao.update(thread);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("threadId",id);
+        modelAndView.addObject("threadJSP", threadDao.getById(id));
+        modelAndView.setViewName("thread");
+
         return modelAndView;
     }
 
@@ -109,6 +111,7 @@ public class MainController {
     @RequestMapping(value = "/messages", method = RequestMethod.POST)
     public ModelAndView postMessages(@RequestParam("text") String text) {
         Message temp = new Message();
+        temp.setDate_posted(new GregorianCalendar());
         temp.setText(text);
         temp.setIdUser(userDao.getAll().get(0));
         messageDao.create(temp);

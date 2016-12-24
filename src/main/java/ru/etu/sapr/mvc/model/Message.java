@@ -2,6 +2,8 @@ package ru.etu.sapr.mvc.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Calendar;
+import java.util.Comparator;
 
 /**
  * Created by Nikita on 20.12.2016.
@@ -32,7 +34,7 @@ public class Message {
         this.text = text;
     }
 
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     private User idUser;
 
     public User getIdUser() {
@@ -42,4 +44,20 @@ public class Message {
     public void setIdUser(User idUser) {
         this.idUser = idUser;
     }
+
+    private Calendar date_posted;
+
+    public Calendar getDate_posted() {
+        return date_posted;
+    }
+
+    public void setDate_posted(Calendar date_posted) {
+        this.date_posted = date_posted;
+    }
+
+    public static final Comparator<Message> COMPARE_BY_DATE = new Comparator<Message>() {
+        public int compare(Message m1, Message m2) {
+            return m1.getDate_posted().compareTo(m2.getDate_posted());
+        }
+    };
 }

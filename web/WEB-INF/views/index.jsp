@@ -67,42 +67,33 @@
         <section class="panel panel-info">
             <header class="panel-heading">
                 <section class="panel-title">
-                    <section class="col-md-4">
+                    <section class="col-md-9">
                         Название темы
                     </section>
-                    <section class="col-md-4">
+                    <section class="col-md-3">
                         Количество сообщений
                     </section>
-                    <section class="col-md-4">
+                   <%-- <section class="col-md-4">
                         Последнее сообщение
-                    </section>
+                    </section>--%>
                 </section>
             </header>
             <section class="clearfix">
+                <c:forEach items="${threadsJSP}" var="thread" >
                 <div class="panel-body row topic-body col-md-12">
-                    <section class="col-md-4">
-                        dfdfdfs
+                    <section class="col-md-9">
+                        <a href="/thread?id=<c:out value="${thread.idThread}"/>">
+                            <c:out value="${thread.title}"/>
+                        </a>
                     </section>
-                    <section class="col-md-4">
-                        dfdfdfs
+                    <section class="col-md-3">
+                        <c:out value="${thread.messages.size()}"/>
                     </section>
-                    <section class="col-md-4">
+                   <%-- <section class="col-md-4">
                         dfdfdfs
-                    </section>
+                    </section>--%>
                 </div>
-
-                <div class="panel-body row topic-body col-md-12">
-                    <section class="col-md-4">
-                        dfdfdfs
-                    </section>
-                    <section class="col-md-4">
-                        dfdfdfs
-                    </section>
-                    <section class="col-md-4">
-                        dfdfdfs
-                    </section>
-                </div>
-
+                </c:forEach>
             </section>
         </section>
 </div>

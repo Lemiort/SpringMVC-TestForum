@@ -33,7 +33,10 @@ public class ThreadDaoImpl implements ThreadDao{
     }
 
     public void update(Thread thread) {
-
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.update(thread);
+        session.getTransaction().commit();
     }
     public void delete(Thread thread) {
 

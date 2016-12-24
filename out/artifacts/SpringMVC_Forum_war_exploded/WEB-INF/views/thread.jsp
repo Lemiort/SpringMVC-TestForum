@@ -89,16 +89,16 @@
         <section class="col-md-12 column">
 
             <ol class="breadcrumb">
-                <li><a href="#">Forum</a></li>
-                <li><a href="#">Web design</a></li>
-                <li class="active">Help me in this code? </li>
+                <li><a href="../">Главная</a></li>
+                <li><c:out value="${threadJSP.title}"></c:out></li>
+                <%--<li><a href="#">Web design</a></li>
+                <li class="active">Help me in this code? </li>--%>
             </ol>
 
         </section>
     </section>
     <section class="row clearfix">
         <section class="col-md-12 column">
-
 
             <c:forEach items="${threadJSP.messages}" var="message">
             <div class="row clearfix">
@@ -108,10 +108,10 @@
                         <div class="panel-heading">
                             <section class="panel-title">
                                 <time class="pull-right">
-                                    <i class="fa fa-calendar"></i> 2014-09-15 , <i class="fa fa-clock-o"></i> 1:35 pm
+                                    <i class="fa fa-calendar"></i> <c:out value="${message.date_posted.time}"/> , <i class="fa fa-clock-o"></i> 1:35 pm
                                 </time>
                                 <section class="pull-left" idThread="idThread">
-                                    <abbr title="count of posts in this topic">#1</abbr>
+                                    <abbr title="count of posts in this topic"> #<c:out value="${message.idMessage}"/></abbr>
                                 </section>
                             </section>
                         </div>
@@ -153,6 +153,58 @@
 
 
             </c:forEach>
+            <form class="row clearfix" action="thread?id=<c:out value="${threadJSP.idThread}"/>" method="post" >
+                <div class="col-md-12 column">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <section class="panel-title">
+                                Написать новое сообщение
+                            </section>
+                        </div>
+                        <section class="row panel-body">
+                            <section class="col-md-12">
+                                <input name="text" type="text" placeholder="сообщение"
+                                       class="form-control input-md" required="">
+                            </section>
+                        </section>
+                        <div class="panel-footer">
+                            <button type="submit" name="submitButton" class="btn btn-success">
+                                Отправить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <%--<form class="form-horizontal" action="messages" method="post">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Добавить сообщение</legend>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        &lt;%&ndash;<label class="col-md-12 control-label" for="text">Текст сообщения</label>&ndash;%&gt;
+                        <div class="col-md-12">
+                            <input name="text" type="text" placeholder="сообщение"
+                                   class="form-control input-md" required="">
+
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-md-12 control-label" for="submitButton"></label>
+                        <div class="col-md-12">
+                            <button type="submit" idThread="submitButton" name="submitButton" class="btn btn-success">
+                                Отправить
+                            </button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>--%>
         </section>
     </section>
 </section>

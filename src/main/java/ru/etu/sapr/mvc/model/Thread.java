@@ -1,8 +1,13 @@
 package ru.etu.sapr.mvc.model;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.OrderBy;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -17,6 +22,15 @@ public class Thread {
     @GeneratedValue
     private int idThread;
 
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public int getIdThread(){
         return idThread;
