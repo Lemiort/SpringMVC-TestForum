@@ -51,6 +51,23 @@ public class MainController {
         return modelAndView;
     }
 
+    /*First method on start application*/
+    /*Попадаем сюда на старте приложения (см. параметры аннотации и настройки пути после деплоя) */
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ModelAndView createThread(@RequestParam("title") String title) {
+        ModelAndView modelAndView = new ModelAndView();
+        //modelAndView.addObject("forumJSP",forum);
+        modelAndView.setViewName("index");
+
+        Thread thread = new Thread();
+        thread.setTitle(title);
+        threadDao.create(thread);
+        modelAndView.addObject("threadsJSP",threadDao.getAll());
+
+        return modelAndView;
+    }
+
+
     /*как только на index.jsp подтвердится форма
     <spring:form method="post"  modelAttribute="userJSP" action="check-user">,
     то попадем вот сюда
