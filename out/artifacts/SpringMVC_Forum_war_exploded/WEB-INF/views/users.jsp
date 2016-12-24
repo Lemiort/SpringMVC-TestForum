@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label class="col-md-12 control-label" for="nick">Ник</label>
                 <div class="col-md-12">
-                    <input id="nick" name="nick" type="nick" placeholder="Ололош"
+                    <input idThread="nick" name="nick" type="nick" placeholder="Ололош"
                            class="form-control input-md" required="">
 
                 </div>
@@ -55,7 +55,7 @@
             <div class="form-group">
                 <label class="col-md-12 control-label" for="submitButton"></label>
                 <div class="col-md-12">
-                    <button type="submit" id="submitButton" name="submitButton" class="btn btn-success">
+                    <button type="submit" idThread="submitButton" name="submitButton" class="btn btn-success">
                         Создать
                     </button>
                 </div>

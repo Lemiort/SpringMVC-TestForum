@@ -20,5 +20,6 @@
 
         <mapping class="ru.etu.sapr.mvc.model.Message"/>
         <mapping class="ru.etu.sapr.mvc.model.User"/>
+        <mapping class="ru.etu.sapr.mvc.model.Thread" />
     </session-factory>
 </hibernate-configuration>

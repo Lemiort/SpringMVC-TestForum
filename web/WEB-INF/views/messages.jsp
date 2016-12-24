@@ -44,7 +44,7 @@
                                     <time class="pull-right">
                                         <i class="fa fa-calendar"></i> 2014-09-15 , <i class="fa fa-clock-o"></i> 1:35 pm
                                     </time>
-                                    <section class="pull-left" id="id">
+                                    <section class="pull-left" idThread="idThread">
                                         <abbr title="count of posts in this topic">#1</abbr>
                                     </section>
                                 </section>
@@ -54,7 +54,7 @@
                                     <c:out value="${message.text}"/>
                                 </section>
 
-                                <section id="user-description" class="col-md-3 ">
+                                <section idThread="user-description" class="col-md-3 ">
                                     <section class="well">
 
                                         <figure>
@@ -71,7 +71,7 @@
                                     <section class="col-md-3 ">
 
                                     </section>
-                                    <section id="thanks" class="col-md-6">
+                                    <section idThread="thanks" class="col-md-6">
 
                                     </section>
                                     <section class="col-md-3">
@@ -101,7 +101,7 @@
             <div class="form-group">
                 <label class="col-md-12 control-label" for="text">Текст сообщения</label>
                 <div class="col-md-12">
-                    <input id="text" name="text" type="text" placeholder="сообщение"
+                    <input idThread="text" name="text" type="text" placeholder="сообщение"
                            class="form-control input-md" required="">
 
                 </div>
@@ -111,7 +111,7 @@
             <div class="form-group">
                 <label class="col-md-12 control-label" for="submitButton"></label>
                 <div class="col-md-12">
-                    <button type="submit" id="submitButton" name="submitButton" class="btn btn-success">
+                    <button type="submit" idThread="submitButton" name="submitButton" class="btn btn-success">
                         Отправить
                     </button>
                 </div>

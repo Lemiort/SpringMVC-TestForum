@@ -12,7 +12,7 @@ import java.util.*;
 @Component
 public class Forum {
     public  Forum(){
-        threads = new ArrayList<Thread>();
+       /* threads = new ArrayList<Thread>();
         User lemiort = new User();
         lemiort.setName("Lemiort");
 
@@ -33,7 +33,7 @@ public class Forum {
         flood.setTimeCreated(new Date(2016,05,16,23,45));
         flood.setLastUser(lemiort);
         flood.setTimeUpdated(new Date(2016,05,16,23,46));
-        threads.add(flood);
+        threads.add(flood);*/
     }
 
     private ArrayList<Thread> threads;

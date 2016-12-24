@@ -4,10 +4,10 @@
 
 <hibernate-mapping>
     <class name="ru.etu.sapr.mvc.model.Message" table="message" catalog="test">
-        <id name="idMessage" type="java.lang.Integer">
+        <idThread name="idMessage" type="java.lang.Integer">
             <column name="idMessage" />
             <generator class="identity" />
-        </id>
+        </idThread>
         <property name="text" type="string">
             <column name="text" />
         </property>

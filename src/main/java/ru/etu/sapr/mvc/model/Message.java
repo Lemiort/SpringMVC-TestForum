@@ -32,15 +32,14 @@ public class Message {
         this.text = text;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "authorId")
-    private User author;
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private User idUser;
 
-    public User getAuthor() {
-        return author;
+    public User getIdUser() {
+        return idUser;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setIdUser(User idUser) {
+        this.idUser = idUser;
     }
 }

@@ -4,10 +4,10 @@
 
 <hibernate-mapping>
     <class name="ru.etu.sapr.mvc.model.User" table="user" catalog="test">
-        <id name="idUser" type="java.lang.Integer">
+        <idThread name="idUser" type="java.lang.Integer">
             <column name="idUser" />
             <generator class="identity" />
-        </id>
+        </idThread>
         <property name="name" type="string">
             <column name="name" length="20" not-null="true" unique="true" />
         </property>

@@ -42,7 +42,7 @@
                 <!--<div class="small">
                     <c:out value="${thread.creator.name}"/>
                     <c:out value="${thread.timeCreated}"/>
-                    <c:out value="${thread.id}"/>
+                    <c:out value="${thread.idThread}"/>
                 </div>-->
             </div>
         </td>
@@ -110,7 +110,7 @@
                                 <time class="pull-right">
                                     <i class="fa fa-calendar"></i> 2014-09-15 , <i class="fa fa-clock-o"></i> 1:35 pm
                                 </time>
-                                <section class="pull-left" id="id">
+                                <section class="pull-left" idThread="idThread">
                                     <abbr title="count of posts in this topic">#1</abbr>
                                 </section>
                             </section>
@@ -120,12 +120,12 @@
                                 <c:out value="${message.text}"/>
                             </section>
 
-                            <section id="user-description" class="col-md-3 ">
+                            <section idThread="user-description" class="col-md-3 ">
                                 <section class="well">
 
                                     <figure>
                                         <img class="img-rounded img-responsive" src="../../resources/images/av.jpg" alt="User avatar">
-                                        <figcaption class="text-center"> Name </figcaption>
+                                        <figcaption class="text-center"> <c:out value="${message.idUser.name}"/> </figcaption>
                                     </figure>
 
                                 </section>
@@ -137,7 +137,7 @@
                                 <section class="col-md-3 ">
 
                                 </section>
-                                <section id="thanks" class="col-md-6">
+                                <section idThread="thanks" class="col-md-6">
 
                                 </section>
                                 <section class="col-md-3">
