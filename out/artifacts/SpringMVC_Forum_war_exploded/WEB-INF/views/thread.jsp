@@ -124,7 +124,7 @@
                                 <time class="pull-right">
                                     <i class="fa fa-calendar"></i> <c:out value="${message.date_posted.time}"/>
                                 </time>
-                                <section class="pull-left" idThread="idThread">
+                                <section class="pull-left" id="idThread">
                                     <abbr> #<c:out value="${message.idMessage}"/></abbr>
                                 </section>
                             </section>
@@ -161,8 +161,23 @@
                         <div class="panel-footer">
                             <div class="row">
                                 <section class="col-md-3">
-                                    <a href="#"> Редактировать </a> |
+                                    <%--<a href="#"> Редактировать </a> |--%>
+                                    <div type="button"  class="btn btn-link" onclick="editMessage<c:out value="${message.idMessage}"/>()">
+                                        Редактировать
+                                    </div>
+                                    <%--<u onclick="editMessage<c:out value="${message.idMessage}"/>()">Редактировать</u>|--%>
                                     <a href="#"> Удалить </a>
+
+                                    <script>
+                                        function editMessage<c:out value="${message.idMessage}"/>() {
+                                            var container = document.getElementById("message<c:out value="${message.idMessage}"/>");
+                                            var input = document.createElement("input");
+                                            input.type = "text";
+                                            input.className = "form-control input-md"; // set the CSS class
+                                            container.innerText = "";
+                                            container.appendChild(input); // put it into the DOM
+                                        }
+                                    </script>
                                 </section>
                             </div>
                         </div>
