@@ -51,6 +51,23 @@ public class MainController {
         return modelAndView;
     }
 
+    /*First method on start application*/
+    /*Попадаем сюда на старте приложения (см. параметры аннотации и настройки пути после деплоя) */
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public ModelAndView createThread(@RequestParam("title") String title) {
+        ModelAndView modelAndView = new ModelAndView();
+        //modelAndView.addObject("forumJSP",forum);
+        modelAndView.setViewName("index");
+
+        Thread thread = new Thread();
+        thread.setTitle(title);
+        threadDao.create(thread);
+        modelAndView.addObject("threadsJSP",threadDao.getAll());
+
+        return modelAndView;
+    }
+
+
     /*как только на index.jsp подтвердится форма
     <spring:form method="post"  modelAttribute="userJSP" action="check-user">,
     то попадем вот сюда
@@ -72,7 +89,9 @@ public class MainController {
     public ModelAndView viewThread(@ModelAttribute("userJSP") User user,
                                    @RequestParam("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("threadJSP", threadDao.getById(id));
+        Thread thread = threadDao.getById(id);
+        thread.getMessages().sort(Message.COMPARE_BY_DATE);
+        modelAndView.addObject("threadJSP", thread);
         modelAndView.setViewName("thread");
         return modelAndView;
     }
@@ -86,13 +105,16 @@ public class MainController {
 
         Thread thread = threadDao.getById(id);
         thread.getMessages().add(temp);
+        thread.getMessages().sort(Message.COMPARE_BY_DATE);
 
         //((ArrayList<Message>)thread.getMessages()).sort(Message.COMPARE_BY_DATE);
         threadDao.update(thread);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("threadId",id);
-        modelAndView.addObject("threadJSP", threadDao.getById(id));
+        thread = threadDao.getById(id);
+        thread.getMessages().sort(Message.COMPARE_BY_DATE);
+        modelAndView.addObject("threadJSP", thread);
         modelAndView.setViewName("thread");
 
         return modelAndView;

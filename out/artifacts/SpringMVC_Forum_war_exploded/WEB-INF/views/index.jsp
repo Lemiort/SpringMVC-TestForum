@@ -96,7 +96,37 @@
                 </c:forEach>
             </section>
         </section>
+
+    <form class="form-horizontal" method="post">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Добавить тему</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-12 control-label" for="title">Название темы</label>
+                <div class="col-md-12">
+                    <input  id="title" name="title"
+                            class="form-control input-md" required="">
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-12 control-label" for="submitButton"></label>
+                <div class="col-md-12">
+                    <button type="submit" id="submitButton" class="btn btn-success">
+                        Создать
+                    </button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
 </div>
+
+
 
 </body>
 
