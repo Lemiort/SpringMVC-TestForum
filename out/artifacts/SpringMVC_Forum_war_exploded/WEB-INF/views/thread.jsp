@@ -12,6 +12,20 @@
     <link href="${bootstrap}" rel="stylesheet" />
     <link href="${startertemplate}" rel="stylesheet" />
     <link href="resources/css/myStyle.css" rel="stylesheet" />
+
+
+    <script>
+        function brAll(s) {
+            if(s.indexOf("\n",0) != -1){
+                s = s.replace("\n", "");
+            }
+            while (s.indexOf("\n",0) != -1){
+                s = s.replace("\n", "<br>");
+            }
+            return s;
+        }
+    </script>
+
 </head>
 
 <body>
@@ -108,19 +122,16 @@
                         <div class="panel-heading">
                             <section class="panel-title">
                                 <time class="pull-right">
-                                    <i class="fa fa-calendar"></i> <c:out value="${message.date_posted.time}"/> , <i class="fa fa-clock-o"></i> 1:35 pm
+                                    <i class="fa fa-calendar"></i> <c:out value="${message.date_posted.time}"/>
                                 </time>
                                 <section class="pull-left" idThread="idThread">
-                                    <abbr title="count of posts in this topic"> #<c:out value="${message.idMessage}"/></abbr>
+                                    <abbr> #<c:out value="${message.idMessage}"/></abbr>
                                 </section>
                             </section>
                         </div>
                         <section class="row panel-body">
-                            <section class="col-md-9">
-                                <c:out value="${message.text}"/>
-                            </section>
 
-                            <section idThread="user-description" class="col-md-3 ">
+                            <section id="user-description" class="col-md-3 ">
                                 <section class="well">
 
                                     <figure>
@@ -131,19 +142,27 @@
                                 </section>
                             </section>
 
+                            <section id="message<c:out value="${message.idMessage}"/>" class="col-md-9" >
+                                <c:out value="${message.text}"/>
+                            </section>
+
+                            <script>
+                                function BR<c:out value="${message.idMessage}"/>() {
+                                    var s = document.getElementById("message<c:out value="${message.idMessage}"/>").innerHTML;
+                                    s = brAll(s);
+                                    document.getElementById("message<c:out value="${message.idMessage}"/>").innerHTML = s;
+                                }
+
+                                document.addEventListener("DOMContentLoaded", BR<c:out value="${message.idMessage}"/>);
+                            </script>
+
+
                         </section>
                         <div class="panel-footer">
                             <div class="row">
-                                <section class="col-md-3 ">
-
-                                </section>
-                                <section idThread="thanks" class="col-md-6">
-
-                                </section>
                                 <section class="col-md-3">
-                                    <a href="#"> Reply With Quote </a> |
-                                    <a href="#"> Reply </a>|
-                                    <a href="#"> Edit Post </a>
+                                    <a href="#"> Редактировать </a> |
+                                    <a href="#"> Удалить </a>
                                 </section>
                             </div>
                         </div>
@@ -156,24 +175,30 @@
             <form class="row clearfix" action="thread?id=<c:out value="${threadJSP.idThread}"/>" method="post" >
                 <div class="col-md-12 column">
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <section class="panel-title">
-                                Написать новое сообщение
-                            </section>
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend onclick="sendMessage()">Написать новое сообщение</legend>
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="text">Текст сообшения</label>
+                            <div class="col-md-9">
+                    <textarea class="form-control input-md" id="text" name="text" type="text"
+                              placeholder="сообщение" required="" ></textarea>
+                            </div>
                         </div>
-                        <section class="row panel-body">
-                            <section class="col-md-12">
-                                <input name="text" type="text" placeholder="сообщение"
-                                       class="form-control input-md" required="">
-                            </section>
-                        </section>
-                        <div class="panel-footer">
-                            <button type="submit" name="submitButton" class="btn btn-success">
-                                Отправить
-                            </button>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="submitButton"></label>
+                            <div class="col-md-9">
+                                <button type="submit" id="submitButton" name="submitButton" class="btn btn-default">
+                                    Отправить
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </fieldset>
                 </div>
             </form>
 
@@ -208,8 +233,39 @@
         </section>
     </section>
 </section>
+<script>
+    function deleteMessage(message) {
+
+
+    }
+
+    function sendMessage() {
+
+        var xhr = new XMLHttpRequest();
+
+
+        //var name = "thread?id=<c:out value="${threadJSP.idThread}" />";
+        var name = "/thread";
+
+        var id = "<c:out value="${threadJSP.idThread}" />";
+        var text = document.getElementById("text").value;
+
+        var body = "id="+id+"&"+
+                "text="+encodeURIComponent(text);
+
+        xhr.open("POST", name, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                location.reload();
+            }
+        };
+        xhr.send(body);
+    }
+
+</script>
 
 
 </body>
-
 </html>
