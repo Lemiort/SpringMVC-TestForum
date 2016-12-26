@@ -113,7 +113,7 @@
 
 
             </c:forEach>
-            <form class="row clearfix" action="thread?id=<c:out value="${threadJSP.idThread}"/>" method="post" >
+            <form class="row clearfix"  >
                 <div class="col-md-12 column">
 
                     <fieldset>
@@ -132,9 +132,8 @@
 
                         <!-- Button -->
                         <div class="form-group">
-                            <label class="col-md-3 control-label" for="submitButton"></label>
-                            <div class="col-md-9">
-                                <button type="submit" id="submitButton" name="submitButton" class="btn btn-default">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="button" id="button" name="submitButton" class="btn btn-default" onclick="sendMessage()">
                                     Отправить
                                 </button>
                             </div>
@@ -147,25 +146,69 @@
     </section>
 </section>
 <script>
-    function deleteMessage(message) {
-
-
-    }
 
     function sendMessage() {
 
         var xhr = new XMLHttpRequest();
 
-
-        //var name = "thread?id=<c:out value="${threadJSP.idThread}" />";
-        var name = "/thread";
-
         var id = "<c:out value="${threadJSP.idThread}" />";
+        var name = "/thread?id="+id;
         var text = document.getElementById("text").value;
 
         var body = "id="+id+"&"+
                 "text="+encodeURIComponent(text);
 
+        xhr.open("POST", name, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                location.reload();
+            }
+        };
+        xhr.send(body);
+    }
+
+    function sendChanges() {
+
+        var xhr = new XMLHttpRequest();
+
+        var id = "<c:out value="${threadJSP.idThread}" />";
+
+        // TODO: name
+        var name = "/thread?id="+id;
+
+        var text = document.getElementById("editArea").value;
+
+        // TODO: body
+        var body = "id="+id+"&"+
+                "text="+encodeURIComponent(text);
+
+        xhr.open("POST", name, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                location.reload();
+            }
+        };
+        xhr.send(body);
+    }
+
+
+    function deleteMessage(messageId) {
+
+        var xhr = new XMLHttpRequest();
+
+        var id = "<c:out value="${threadJSP.idThread}" />";
+
+        // TODO: name
+        var name = "/thread?id="+id;
+
+        // TODO: body
+        var body = "";
+
+        // POST?????
         xhr.open("POST", name, true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 

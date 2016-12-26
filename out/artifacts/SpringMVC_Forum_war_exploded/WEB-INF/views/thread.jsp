@@ -113,7 +113,7 @@
 
 
             </c:forEach>
-            <form class="row clearfix" action="thread?id=<c:out value="${threadJSP.idThread}"/>" method="post" >
+            <form class="row clearfix"  >
                 <div class="col-md-12 column">
 
                     <fieldset>
@@ -132,9 +132,8 @@
 
                         <!-- Button -->
                         <div class="form-group">
-                            <label class="col-md-3 control-label" for="submitButton"></label>
                             <div class="col-md-9">
-                                <button type="submit" id="submitButton" name="submitButton" class="btn btn-default">
+                                <button type="button" id="button" name="submitButton" class="btn btn-default" onclick="sendMessage()">
                                     Отправить
                                 </button>
                             </div>
@@ -156,11 +155,8 @@
 
         var xhr = new XMLHttpRequest();
 
-
-        //var name = "thread?id=<c:out value="${threadJSP.idThread}" />";
-        var name = "/thread";
-
         var id = "<c:out value="${threadJSP.idThread}" />";
+        var name = "/thread?id="+id;
         var text = document.getElementById("text").value;
 
         var body = "id="+id+"&"+
