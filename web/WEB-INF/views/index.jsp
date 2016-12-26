@@ -86,8 +86,15 @@
                             <c:out value="${thread.title}"/>
                         </a>
                     </section>
-                    <section class="col-md-3">
+                    <section class="col-md-2">
                         <c:out value="${thread.messages.size()}"/>
+                    </section>
+                    <section class="col-md-1">
+                        <div type="button"  class="btn btn-link"
+                             onclick="deleteThread('<c:out value="${thread.idThread}"/>')"
+                        >
+                            Удалить
+                        </div>
                     </section>
                    <%-- <section class="col-md-4">
                         dfdfdfs
@@ -126,7 +133,11 @@
     </form>
 </div>
 
-
+<script>
+    function deleteThread(threadId) {
+        console.log(threadId);
+    }
+</script>
 
 </body>
 
