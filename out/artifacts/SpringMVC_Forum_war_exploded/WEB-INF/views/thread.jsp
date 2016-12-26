@@ -240,7 +240,7 @@
         var sendChangesButton = document.createElement('div');
         sendChangesButton.type = "button";
         sendChangesButton.className = "btn btn-link";
-        sendChangesButton.onclick = sendChanges(messageId);
+        sendChangesButton.onclick = function(){sendChanges(messageId);};
         sendChangesButton.innerText = "Сохранить изменения";
         //sendChangesButton.id = "editMessageSubmitButton";
 

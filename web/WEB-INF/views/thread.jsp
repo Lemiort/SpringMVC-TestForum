@@ -208,7 +208,7 @@
         var body = "id="+id+"&"+
                 "idMessage="+messageId;
 
-        // POST?????
+        // POST
         xhr.open("POST", name, true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -240,7 +240,7 @@
         var sendChangesButton = document.createElement('div');
         sendChangesButton.type = "button";
         sendChangesButton.className = "btn btn-link";
-        sendChangesButton.onclick = sendChanges(messageId);
+        sendChangesButton.onclick = function(){sendChanges(messageId);};
         sendChangesButton.innerText = "Сохранить изменения";
         //sendChangesButton.id = "editMessageSubmitButton";
 

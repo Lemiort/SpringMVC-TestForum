@@ -135,7 +135,24 @@
 
 <script>
     function deleteThread(threadId) {
-        console.log(threadId);
+        var xhr = new XMLHttpRequest();
+
+        var id = threadId;
+
+        var name = "/delete_thread";
+
+        var body = "id="+id;
+
+        // POST
+        xhr.open("POST", name, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                location.reload();
+            }
+        };
+        xhr.send(body);
     }
 </script>
 
