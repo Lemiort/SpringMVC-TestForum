@@ -30,74 +30,6 @@
 
 <body>
 
-
-<!-- таблица тем  -->
-<!-- TODO: сделать блочную вёрстку ну или другим способом сделать это дерьмо более презентабельным -->
-<%--<table class="table table-hover" align="center">
-    <!--<table class="table-bordered" align="center">-->
-    <!-- шапка -->
-    <thead class="thead-inverse">
-    <tr class="alert-info">
-        <!-- <td><div class="h3" align="center">Темы</div></td>
-         <td><div class="h3" align="center">Кол-во cообщений</div></td>
-         <td><div class="h3" align="center">Последнее сообщение</div></td>-->
-        <th>Название темы</th>
-        <th>Количество сообщений</th>
-        <th>Последнее сообщение</th>
-    </tr>
-    </thead>
-    <!-- тело -->
-    <tbody>
-    <c:forEach items="${threadJSP.messages}" var="message">
-    <tr>
-        <td>
-            <div class="h4" align="left">
-                <c:out value="${message.text}"/>
-                <!--<div class="small">
-                    <c:out value="${thread.creator.name}"/>
-                    <c:out value="${thread.timeCreated}"/>
-                    <c:out value="${thread.idThread}"/>
-                </div>-->
-            </div>
-        </td>
-        <!--<td>
-            <div class="h4" align="left">
-                1
-                <div/>
-        </td>
-        <td>
-            <div class="h4" align="left">
-                <c:out value="${thread.timeUpdated}"/>
-                <div class="small">
-                    <c:out value="${thread.lastUser.name}"/>
-                </div>
-            </div>
-        </td>-->
-    </tr>
-    </c:forEach>
-
-</table>--%>
-<%--
-<div class="container">
-    <c:forEach items="${threadJSP.messages}" var="message">
-    <div class="row">
-        <div class="col-xs-9">
-            <!-- сообшение -->
-            <p>  <c:out value="${message.text}"/> </p>
-        </div>
-        <div class="col-xs-3">
-            <p> autor </p>
-            <img src="../../resources/images/av.jpg" class="img-rounded">
-        </div>
-    </div>
-    </c:forEach>
-
-
-
-
-</div>--%>
-
-
 <section class="container">
     <section class="row clearfix">
         <section class="col-md-12 column">
@@ -135,16 +67,17 @@
                                 <section class="well">
 
                                     <figure>
-                                        <img class="img-rounded img-responsive" src="../../resources/images/av.jpg" alt="User avatar">
+                                        <img class="img-rounded img-responsive " src="../../resources/images/av.jpg" alt="User avatar">
                                         <figcaption class="text-center"> <c:out value="${message.idUser.name}"/> </figcaption>
                                     </figure>
 
                                 </section>
                             </section>
-
-                            <section id="message<c:out value="${message.idMessage}"/>" class="col-md-9" >
-                                <c:out value="${message.text}"/>
-                            </section>
+                            <div class="col-md-9" id="divmessage<c:out value="${message.idMessage}"/>">
+                                <section id="message<c:out value="${message.idMessage}"/>"  >
+                                    <c:out value="${message.text}"/>
+                                </section>
+                            </div>
 
                             <script>
                                 function BR<c:out value="${message.idMessage}"/>() {
@@ -160,24 +93,17 @@
                         </section>
                         <div class="panel-footer">
                             <div class="row">
-                                <section class="col-md-3">
+                                <section class="col-md-3" id="bottom-panel<c:out value="${message.idMessage}"/>">
                                     <%--<a href="#"> Редактировать </a> |--%>
-                                    <div type="button"  class="btn btn-link" onclick="editMessage<c:out value="${message.idMessage}"/>()">
+                                    <div type="button"  class="btn btn-link"
+                                         onclick="editMessage(
+                                                 'message<c:out value="${message.idMessage}"/>',
+                                                 'bottom-panel<c:out value="${message.idMessage}"/>')"
+                                    >
                                         Редактировать
                                     </div>
                                     <%--<u onclick="editMessage<c:out value="${message.idMessage}"/>()">Редактировать</u>|--%>
                                     <a href="#"> Удалить </a>
-
-                                    <script>
-                                        function editMessage<c:out value="${message.idMessage}"/>() {
-                                            var container = document.getElementById("message<c:out value="${message.idMessage}"/>");
-                                            var input = document.createElement("input");
-                                            input.type = "text";
-                                            input.className = "form-control input-md"; // set the CSS class
-                                            container.innerText = "";
-                                            container.appendChild(input); // put it into the DOM
-                                        }
-                                    </script>
                                 </section>
                             </div>
                         </div>
@@ -217,34 +143,6 @@
                 </div>
             </form>
 
-            <%--<form class="form-horizontal" action="messages" method="post">
-                <fieldset>
-
-                    <!-- Form Name -->
-                    <legend>Добавить сообщение</legend>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        &lt;%&ndash;<label class="col-md-12 control-label" for="text">Текст сообщения</label>&ndash;%&gt;
-                        <div class="col-md-12">
-                            <input name="text" type="text" placeholder="сообщение"
-                                   class="form-control input-md" required="">
-
-                        </div>
-                    </div>
-
-                    <!-- Button -->
-                    <div class="form-group">
-                        <label class="col-md-12 control-label" for="submitButton"></label>
-                        <div class="col-md-12">
-                            <button type="submit" idThread="submitButton" name="submitButton" class="btn btn-success">
-                                Отправить
-                            </button>
-                        </div>
-                    </div>
-
-                </fieldset>
-            </form>--%>
         </section>
     </section>
 </section>
@@ -279,8 +177,33 @@
         xhr.send(body);
     }
 
+    function editMessage(message, buttonPanelName) {
+
+        // adding text area
+        var text = document.getElementById(message).innerText;
+        var div = document.getElementById("div"+message);
+        var textarea = document.createElement("textarea");
+        textarea.type = "text";
+        textarea.name = "text";
+        textarea.id = "editArea";
+        textarea.className = "form-control input-md editArea"; // set the CSS class
+        textarea.value = text;
+        div.innerHTML = "";
+        div.appendChild(textarea); // put it into the DOM
+        textarea.focus();
+
+        // adding button(s)
+        var buttonPanel = document.getElementById(buttonPanelName);
+        var sendChangesButton = document.createElement('div');
+        sendChangesButton.type = "button";
+        sendChangesButton.className = "btn btn-link";
+        sendChangesButton.onclick = function () {console.log('send changes')};
+        sendChangesButton.innerText = "Сохранить изменения";
+
+        buttonPanel.innerHTML = "";
+        buttonPanel.appendChild(sendChangesButton);
+
+    }
 </script>
-
-
 </body>
 </html>

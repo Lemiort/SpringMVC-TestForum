@@ -7,10 +7,10 @@
       <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.11.FINAL/hibernate-core-4.3.11.FINAL-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.11.Final/hibernate-core-4.3.11.Final-sources.jar!/" />
-      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.11.Final/hibernate-core-4.3.11.Final-sources.jar!/" />
-      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.11.Final/hibernate-core-4.3.11.Final-sources.jar!/" />
-      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.11.Final/hibernate-core-4.3.11.Final-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.11.FINAL/hibernate-core-4.3.11.FINAL-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.11.FINAL/hibernate-core-4.3.11.FINAL-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.11.FINAL/hibernate-core-4.3.11.FINAL-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.11.FINAL/hibernate-core-4.3.11.FINAL-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

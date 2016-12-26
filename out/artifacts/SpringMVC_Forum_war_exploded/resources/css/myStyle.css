@@ -5,6 +5,10 @@ textarea{
     max-width: 100%;
 }
 
+.editArea{
+    height: auto;
+}
+
 .fa-quote-right{
     font-size:.5em;
 }
