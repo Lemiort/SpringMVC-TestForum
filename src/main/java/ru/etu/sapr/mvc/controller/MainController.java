@@ -133,6 +133,16 @@ public class MainController {
         return viewThread(id);
     }
 
+    @RequestMapping(value = "/delete_thread", method = RequestMethod.POST)
+    public ModelAndView deleteThread(@RequestParam("id") int id) {
+        Thread thread = threadDao.getById(id);
+        threadDao.delete(thread);
+
+        //((ArrayList<Message>)thread.getMessages()).sort(Message.COMPARE_BY_DATE);
+
+        return main();
+    }
+
 
     @RequestMapping(value = "/messages", method = RequestMethod.GET)
     public ModelAndView viewMessages() {

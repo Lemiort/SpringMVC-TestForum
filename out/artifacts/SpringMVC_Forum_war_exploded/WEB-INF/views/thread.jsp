@@ -208,7 +208,7 @@
         var body = "id="+id+"&"+
                 "idMessage="+messageId;
 
-        // POST?????
+        // POST
         xhr.open("POST", name, true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 

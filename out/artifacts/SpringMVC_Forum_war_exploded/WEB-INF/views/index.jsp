@@ -123,7 +123,7 @@
             <div class="form-group">
                 <label class="col-md-12 control-label" for="submitButton"></label>
                 <div class="col-md-12">
-                    <button type="submit" id="submitButton" class="btn btn-success">
+                    <button type="button" id="submitButton" class="btn btn-success" onclick="createThread()">
                         Создать
                     </button>
                 </div>
@@ -135,7 +135,44 @@
 
 <script>
     function deleteThread(threadId) {
-        console.log(threadId);
+        var xhr = new XMLHttpRequest();
+
+        var id = threadId;
+
+        var name = "/delete_thread";
+
+        var body = "id="+id;
+
+        // POST
+        xhr.open("POST", name, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                location.reload();
+            }
+        };
+        xhr.send(body);
+    }
+
+    function createThread() {
+
+        var xhr = new XMLHttpRequest();
+
+        var name = "/";
+        var text = document.getElementById("title").value;
+
+        var body = "title="+encodeURIComponent(text);
+
+        xhr.open("POST", name, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                location.reload();
+            }
+        };
+        xhr.send(body);
     }
 </script>
 
