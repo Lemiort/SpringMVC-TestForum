@@ -78,7 +78,7 @@
                                     <c:out value="${message.text}"/>
                                 </section>
                             </div>
-
+                           <%-- Замена \n на <br>--%>
                             <script>
                                 function BR<c:out value="${message.idMessage}"/>() {
                                     var s = document.getElementById("message<c:out value="${message.idMessage}"/>").innerHTML;
@@ -96,14 +96,17 @@
                                 <section class="col-md-3" id="bottom-panel<c:out value="${message.idMessage}"/>">
                                     <%--<a href="#"> Редактировать </a> |--%>
                                     <div type="button"  class="btn btn-link"
-                                         onclick="editMessage(
+                                         onclick="editMessage(<c:out value="${message.idMessage}"/>,
                                                  'message<c:out value="${message.idMessage}"/>',
                                                  'bottom-panel<c:out value="${message.idMessage}"/>')"
                                     >
                                         Редактировать
                                     </div>
                                     <%--<u onclick="editMessage<c:out value="${message.idMessage}"/>()">Редактировать</u>|--%>
-                                    <a href="#"> Удалить </a>
+                                        <div type="button"  class="btn btn-link"
+                                             onclick='deleteMessage(<c:out value="${message.idMessage}"/>)'>
+                                            Удалить
+                                        </div>
                                 </section>
                             </div>
                         </div>
@@ -169,19 +172,17 @@
         xhr.send(body);
     }
 
-    function sendChanges() {
-
+    function sendChanges(messageId) {
+        alert("Save changes to "+messageId);
         var xhr = new XMLHttpRequest();
 
         var id = "<c:out value="${threadJSP.idThread}" />";
 
-        // TODO: name
-        var name = "/thread?id="+id;
+        var name = "/edit_message_of_thread";
 
         var text = document.getElementById("editArea").value;
 
-        // TODO: body
-        var body = "id="+id+"&"+
+        var body = "id="+id+"&"+"idMessage="+messageId+"&"+
                 "text="+encodeURIComponent(text);
 
         xhr.open("POST", name, true);
@@ -202,11 +203,10 @@
 
         var id = "<c:out value="${threadJSP.idThread}" />";
 
-        // TODO: name
-        var name = "/thread?id="+id;
+        var name = "/delete_message_from_thread";
 
-        // TODO: body
-        var body = "";
+        var body = "id="+id+"&"+
+                "idMessage="+messageId;
 
         // POST?????
         xhr.open("POST", name, true);
@@ -220,7 +220,7 @@
         xhr.send(body);
     }
 
-    function editMessage(message, buttonPanelName) {
+    function editMessage(messageId,message, buttonPanelName) {
 
         // adding text area
         var text = document.getElementById(message).innerText;
@@ -240,8 +240,9 @@
         var sendChangesButton = document.createElement('div');
         sendChangesButton.type = "button";
         sendChangesButton.className = "btn btn-link";
-        sendChangesButton.onclick = function () {console.log('send changes')};
+        sendChangesButton.onclick = sendChanges(messageId);
         sendChangesButton.innerText = "Сохранить изменения";
+        //sendChangesButton.id = "editMessageSubmitButton";
 
         buttonPanel.innerHTML = "";
         buttonPanel.appendChild(sendChangesButton);

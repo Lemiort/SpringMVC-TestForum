@@ -26,14 +26,25 @@ public class MessageDaoImpl implements MessageDao {
     }
 
     public Message getById(int id) {
-        return null;
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        Message message =  (Message) session.get(Message.class, id);
+        session.getTransaction().commit();
+        //session.close();
+        return message;
     }
 
     public void update(Message message) {
-
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.update(message);
+        session.getTransaction().commit();
     }
     public void delete(Message message) {
-
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.delete(message);
+        session.getTransaction().commit();
     }
 
     public void create(Message message) {

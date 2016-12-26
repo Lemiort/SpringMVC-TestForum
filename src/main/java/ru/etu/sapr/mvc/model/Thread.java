@@ -51,4 +51,22 @@ public class Thread {
     public void setMessages(List<Message> messages) {
         this.messages = messages;
     }
+
+    public void deleteMessageById(int messageId){
+        for(int i=0; i< messages.size();i++){
+            if(messages.get(i).getIdMessage() == messageId){
+                this.messages.remove(i);
+            break;
+            }
+        }
+    }
+
+    public Message getMessageById(int idMessage){
+        for(int i=0; i< messages.size();i++){
+            if(messages.get(i).getIdMessage() == idMessage){
+                return messages.get(i);
+            }
+        }
+        return  null;
+    }
 }

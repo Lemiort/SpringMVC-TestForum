@@ -86,8 +86,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/thread", method = RequestMethod.GET)
-    public ModelAndView viewThread(@ModelAttribute("userJSP") User user,
-                                   @RequestParam("id") int id) {
+    public ModelAndView viewThread(@RequestParam("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
         Thread thread = threadDao.getById(id);
         thread.getMessages().sort(Message.COMPARE_BY_DATE);
@@ -110,14 +109,28 @@ public class MainController {
         //((ArrayList<Message>)thread.getMessages()).sort(Message.COMPARE_BY_DATE);
         threadDao.update(thread);
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("threadId",id);
-        thread = threadDao.getById(id);
-        thread.getMessages().sort(Message.COMPARE_BY_DATE);
-        modelAndView.addObject("threadJSP", thread);
-        modelAndView.setViewName("thread");
+        return  viewThread(id);
+    }
 
-        return modelAndView;
+    @RequestMapping(value = "/edit_message_of_thread", method = RequestMethod.POST)
+    public ModelAndView editMessageOfThread(@RequestParam("id") int id, @RequestParam("idMessage") int idMessage,
+                                              @RequestParam("text") String text) {
+        Thread thread = threadDao.getById(id);
+        thread.getMessageById(idMessage).setText(text);
+        threadDao.update(thread);
+
+        return viewThread(id);
+    }
+
+    @RequestMapping(value = "/delete_message_from_thread", method = RequestMethod.POST)
+    public ModelAndView deleteMessageOfThread(@RequestParam("id") int id, @RequestParam("idMessage") int idMessage) {
+        Thread thread = threadDao.getById(id);
+        thread.deleteMessageById(idMessage);
+
+        //((ArrayList<Message>)thread.getMessages()).sort(Message.COMPARE_BY_DATE);
+        threadDao.update(thread);
+
+        return viewThread(id);
     }
 
 
